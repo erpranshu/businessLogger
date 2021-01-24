@@ -15,7 +15,7 @@ function Invoice() {
   const [button, setButton] = useState(true);
   useEffect(() => {
     axios
-      .get("http://localhost:5000/investment/",{ withCredentials: true })
+      .get("https://businesslogger.herokuapp.com/investment/",{ withCredentials: true })
       .then((resp) => setServices(resp.data));
   }, []);
 
@@ -65,7 +65,7 @@ function Invoice() {
       profit: profit,
       date: new Date().toLocaleDateString(),
     };
-    axios.post("http://localhost:5000/stats/add", data,{withCredentials: true});
+    axios.post("https://businesslogger.herokuapp.com/stats/add", data,{withCredentials: true});
   };
 
   const deleteItem = (idx) => {

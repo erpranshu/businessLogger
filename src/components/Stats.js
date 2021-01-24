@@ -16,7 +16,7 @@ const Stats = () => {
   const [displayYearTitle, setDisplayYearTitle] = useState("");
   useEffect(() => {
     axios
-      .get("http://localhost:5000/stats",{withCredentials: true})
+      .get("https://businesslogger.herokuapp.com/stats",{withCredentials: true})
       .then((resp) => setStatsData(resp.data));
   });
 

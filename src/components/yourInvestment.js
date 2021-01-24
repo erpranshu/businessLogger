@@ -8,7 +8,7 @@ const YourInvestment = () => {
   // const[id,setId]=useState("set")
   useEffect(() => {
     axios
-      .get("http://localhost:5000/investment/", { withCredentials: true })
+      .get("https://businesslogger.herokuapp.com/investment/", { withCredentials: true })
       .then((resp) => setServices(resp.data));
   });
   const addService = () => {
@@ -18,7 +18,7 @@ const YourInvestment = () => {
     };
 
     services.push(data);
-    axios.post("http://localhost:5000/investment/add", data, {
+    axios.post("https://businesslogger.herokuapp.com/investment/add", data, {
       withCredentials: true,
     });
 

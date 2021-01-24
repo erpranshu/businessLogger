@@ -4,7 +4,7 @@ import Navbar from "./navbar";
 //import "bootstrap/js/src/collapse.js"
 
 
-import Axios from "axios";
+
 import { BrowserRouter as Router, Redirect, Route } from "react-router-dom";
 import Home from "./Home";
 import Stats from "./Stats";
@@ -13,7 +13,7 @@ import Invoice from "./Invoice";
 import RegisterForm from "./RegisterForm";
 import NavbarBeforeLogin from "./navbarBeforeLogin";
 import LoginForm from "./LoginForm";
-import axios from "axios";
+
 
 import {useHistory} from 'react-router-dom';
 const App = () => {
@@ -22,7 +22,7 @@ const App = () => {
   const [defaultPageView, setDefaultPageView] = useState(false);
   var history=useHistory();
   useEffect(() => {
-    fetch("http://localhost:5000/user/userinfo", { credentials: "include" })
+    fetch("https://businesslogger.herokuapp.com/user/userinfo", { credentials: "include" })
       .then((r) => {
         if (r.ok) {
           return r.json();
@@ -41,7 +41,7 @@ const App = () => {
   
 
   const registerHandler = (email, password) => {
-    fetch("http://localhost:5000/user/register", {
+    fetch("https://businesslogger.herokuapp.com/user/register", {
       method: "POST",
       body: JSON.stringify({ email, password }),
       headers: {
@@ -67,7 +67,7 @@ const App = () => {
   };
   const loginHandler = (email, password) => {
     
-    fetch("http://localhost:5000/user/login", {
+    fetch("https://businesslogger.herokuapp.com/user/login", {
       method: "POST",
       body: JSON.stringify({ email, password }),
       headers: {
@@ -96,7 +96,7 @@ const App = () => {
   };
 
   const logoutHandler = () => {
-    return fetch("http://localhost:5000/user/logout", {
+    return fetch("https://businesslogger.herokuapp.com/user/logout", {
       credentials: "include",
     }).then((r) => {
       if (r.ok) {
