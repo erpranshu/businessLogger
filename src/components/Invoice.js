@@ -14,7 +14,7 @@ function Invoice() {
   const [profit, setProfit] = useState("");
   const [button, setButton] = useState(true);
   useEffect(() => {
-    fetch("https://businesslogger.herokuapp.com/investment/",{ credentials: "include" })
+   return fetch("https://businesslogger.herokuapp.com/investment/",{ credentials: "include" })
       .then((resp) => setServices(resp.data));
   }, []);
 
