@@ -24,7 +24,7 @@ const Navbar =(props)=> {
               
               <li class="nav-item">
                 <Link
-                  to="/invoice"
+                  to="/Invoice"
                   className="nav-link active"
                   aria-current="page"
                 >
@@ -34,7 +34,7 @@ const Navbar =(props)=> {
 
               <li class="nav-item">
                 <Link
-                  to="/yourInvestment"
+                  to="/YourInvestment"
                   className="nav-link active"
                   aria-current="page"
                 >
