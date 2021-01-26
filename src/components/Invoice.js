@@ -1,7 +1,7 @@
 import React, { Component, useState, useEffect } from "react";
 import axios from "axios";
 import { jsPDF } from "jspdf";
-import {Link} from 'react-router-dom'
+import { Link } from "react-router-dom";
 
 function Invoice() {
   const [items, setItems] = useState([]);
@@ -14,7 +14,11 @@ function Invoice() {
   const [profit, setProfit] = useState("");
   const [button, setButton] = useState(true);
   useEffect(() => {
-    axios.get("https://businesslogger.herokuapp.com/investment/",{withCredentials:true}).then(resp=>setServices(resp.data))
+    axios
+      .get("https://businesslogger.herokuapp.com/investment/", {
+        withCredentials: true,
+      })
+      .then((resp) => setServices(resp.data));
   });
 
   const addItem = () => {
@@ -63,7 +67,9 @@ function Invoice() {
       profit: profit,
       date: new Date().toLocaleDateString(),
     };
-    axios.post("https://businesslogger.herokuapp.com/stats/add", data,{withCredentials: true});
+    axios.post("https://businesslogger.herokuapp.com/stats/add", data, {
+      withCredentials: true,
+    });
   };
 
   const deleteItem = (idx) => {
@@ -91,12 +97,12 @@ function Invoice() {
     items.map((item, index) => {
       totalAmount += item.rate * item.quantity;
       doc.text(20, 110 + index * 8, `${item.name}`);
-      doc.text(95, 110 + index * 8,  `${item.quantity}`);
-      doc.text(135, 110 + index * 8,  `${item.rate}`);
-      doc.text(175, 110 + index * 8,  `${item.rate * item.quantity}`);
+      doc.text(95, 110 + index * 8, `${item.quantity}`);
+      doc.text(135, 110 + index * 8, `${item.rate}`);
+      doc.text(175, 110 + index * 8, `${item.rate * item.quantity}`);
       doc.setLineWidth(12);
     });
-    doc.text(20,257, "Subtotal:  " + "INR " + totalAmount);
+    doc.text(20, 257, "Subtotal:  " + "INR " + totalAmount);
     doc.save("invoice.pdf");
   };
 
@@ -113,7 +119,7 @@ function Invoice() {
                 aria-label="Default select example"
               >
                 <option>select</option>
-                {Array.form(services).map((service, idx) => (
+                {services.map((service, idx) => (
                   <option key={idx} value={service.detail}>
                     {service.detail}
                   </option>
@@ -152,13 +158,29 @@ function Invoice() {
           Add Items
         </button>
 
-       <Link to="/Invoice"> <button className="btn btn-sm btn-primary mx-2" onClick={amount}>SubTotal</button></Link>
-         
-       
-        <button className="btn btn-sm btn-primary mx-2" disabled={subTotal===0} onClick={saveToStats}>
+        <Link to="/Invoice">
+          {" "}
+          <button className="btn btn-sm btn-primary mx-2" onClick={amount}>
+            SubTotal
+          </button>
+        </Link>
+
+        <button
+          className="btn btn-sm btn-primary mx-2"
+          disabled={subTotal === 0}
+          onClick={saveToStats}
+        >
           Done
         </button>
-        <Link to="/Invoice"><button className="btn btn-sm btn-primary" disabled={subTotal===0} onClick={convertPdf}>create pdf</button></Link>
+        <Link to="/Invoice">
+          <button
+            className="btn btn-sm btn-primary"
+            disabled={subTotal === 0}
+            onClick={convertPdf}
+          >
+            create pdf
+          </button>
+        </Link>
       </form>
       <div className="container my-4 invoiceTexts">
         <h3>INVOICE</h3>
