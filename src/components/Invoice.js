@@ -113,7 +113,7 @@ function Invoice() {
                 aria-label="Default select example"
               >
                 <option>select</option>
-                {services.map((service, idx) => (
+                {Array.form(services).map((service, idx) => (
                   <option key={idx} value={service.detail}>
                     {service.detail}
                   </option>
