@@ -18,7 +18,7 @@ function Invoice() {
       .get("https://businesslogger.herokuapp.com/investment/", {
         withCredentials: true,
       })
-      .then((resp) => setServices(resp.data));
+      .then((resp) => console.log(resp));
   });
 
   const addItem = () => {
